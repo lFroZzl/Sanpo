@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_074409) do
+ActiveRecord::Schema.define(version: 2021_11_19_224824) do
 
   create_table "applicants", force: :cascade do |t|
     t.boolean "approved", default: false
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 2021_11_19_074409) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "event_id"
+    t.integer "my_id"
     t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["my_id"], name: "index_comments_on_my_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -53,8 +55,10 @@ ActiveRecord::Schema.define(version: 2021_11_19_074409) do
   create_table "friends", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_friends_on_user_id"
+    t.integer "my_id"
+    t.integer "friend_id"
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
+    t.index ["my_id"], name: "index_friends_on_my_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -73,7 +77,9 @@ ActiveRecord::Schema.define(version: 2021_11_19_074409) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "event_id"
+    t.integer "my_id"
     t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["my_id"], name: "index_notifications_on_my_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
